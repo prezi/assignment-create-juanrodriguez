@@ -1,3 +1,5 @@
+DEBUG = True
+
 # Test data
 data = [
     {
