@@ -6,3 +6,9 @@ BASE_PATH = '/prezi/api/'
 
 # Path + version
 PATH = BASE_PATH + API_VERSION
+
+# Database configuration
+database = {
+    'name': 'prezi',
+    'collection': 'slides'
+}
