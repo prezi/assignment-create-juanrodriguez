@@ -1,4 +1,5 @@
 import json
+import pymongo
 from flask import Flask, abort
 from pymongo import MongoClient
 from logic import JSONEncoder
@@ -22,6 +23,17 @@ def get_slides():
 def get_slide_by_title(slide_title):
     slides = []
     for slide in db.find({'title': slide_title}):
+        slides.append(slide)
+    if len(slides) == 0:
+        abort(404)
+    return json.dumps(slides, cls=JSONEncoder)
+
+
+@app.route(PATH + '/slides/<int:sort_by>', methods=['GET'])
+def get_slides_sorted_by_date(sort_by):
+    slides = []
+    sort_direction = pymongo.ASCENDING if sort_by == 1 else pymongo.DESCENDING
+    for slide in db.find().sort('createdAt', sort_direction):
         slides.append(slide)
     if len(slides) == 0:
         abort(404)
