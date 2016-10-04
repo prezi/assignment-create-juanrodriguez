@@ -1,8 +1,7 @@
-import json
 import pymongo
 from flask import Flask, abort
 from pymongo import MongoClient
-from logic import JSONEncoder
+from logic import json_render
 from settings import *
 
 app = Flask(__name__)
@@ -16,7 +15,7 @@ def get_slides():
         slides.append(slide)
     if len(slides) == 0:
         abort(404)
-    return json.dumps(slides, cls=JSONEncoder)
+    return json_render(data=slides)
 
 
 @app.route(PATH + '/slides/<slide_title>', methods=['GET'])
@@ -26,7 +25,7 @@ def get_slide_by_title(slide_title):
         slides.append(slide)
     if len(slides) == 0:
         abort(404)
-    return json.dumps(slides, cls=JSONEncoder)
+    return json_render(data=slides)
 
 
 @app.route(PATH + '/slides/<int:sort_by>', methods=['GET'])
@@ -37,7 +36,7 @@ def get_slides_sorted_by_date(sort_by):
         slides.append(slide)
     if len(slides) == 0:
         abort(404)
-    return json.dumps(slides, cls=JSONEncoder)
+    return json_render(data=slides)
 
 
 if __name__ == '__main__':
