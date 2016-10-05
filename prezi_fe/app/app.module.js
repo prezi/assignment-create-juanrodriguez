@@ -10,17 +10,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
+var http_1 = require('@angular/http');
 var app_component_1 = require('./app.component');
 var slide_detail_component_1 = require('./slide-detail.component');
 var slides_component_1 = require('./slides.component');
 var slide_service_1 = require('./slide.service');
+require('./rxjs-extensions');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             imports: [
-                platform_browser_1.BrowserModule
+                platform_browser_1.BrowserModule,
+                http_1.HttpModule
             ],
             declarations: [
                 app_component_1.AppComponent,

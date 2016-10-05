@@ -1,7 +1,7 @@
 import pymongo
 from flask import Flask, abort
 from pymongo import MongoClient
-from logic import json_render
+from logic import json_render, crossdomain
 from settings import *
 
 app = Flask(__name__)
@@ -9,6 +9,7 @@ db = MongoClient()[database['name']][database['collection']]
 
 
 @app.route(PATH + '/slides', methods=['GET'])
+@crossdomain(origin='*')
 def get_slides():
     slides = []
     for slide in db.find():
@@ -19,6 +20,7 @@ def get_slides():
 
 
 @app.route(PATH + '/slides/<slide_title>', methods=['GET'])
+@crossdomain(origin='*')
 def get_slide_by_title(slide_title):
     slides = []
     for slide in db.find({'title': slide_title}):
@@ -29,6 +31,7 @@ def get_slide_by_title(slide_title):
 
 
 @app.route(PATH + '/slides/<int:sort_by>', methods=['GET'])
+@crossdomain(origin='*')
 def get_slides_sorted_by_date(sort_by):
     slides = []
     sort_direction = pymongo.ASCENDING if sort_by == 1 else pymongo.DESCENDING

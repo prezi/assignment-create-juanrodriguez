@@ -9,16 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var mock_slides_1 = require('./mock-slides');
+var http_1 = require('@angular/http');
+require('rxjs/add/operator/toPromise');
 var SlideService = (function () {
-    function SlideService() {
+    function SlideService(http) {
+        this.http = http;
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        this.slidesServiceUrl = 'http://localhost:5000/prezi/api/v1.0/slides';
     }
     SlideService.prototype.getSlides = function () {
-        return Promise.resolve(mock_slides_1.SLIDES);
+        return this.http.get(this.slidesServiceUrl)
+            .toPromise()
+            .then(function (response) { return response.json().data; })
+            .catch(this.handleError);
+    };
+    SlideService.prototype.handleError = function (error) {
+        console.error('An error occurred', error);
+        return Promise.reject(error.message || error);
     };
     SlideService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], SlideService);
     return SlideService;
 }());
