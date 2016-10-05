@@ -9,29 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var slide_service_1 = require('./slide.service');
 var AppComponent = (function () {
-    function AppComponent(slideService) {
-        this.slideService = slideService;
+    function AppComponent() {
         this.title = 'Prezi Slides Assignment';
     }
-    AppComponent.prototype.ngOnInit = function () {
-        this.getSlides();
-    };
-    AppComponent.prototype.getSlides = function () {
-        var _this = this;
-        this.slideService.getSlides().then(function (slides) { return _this.slides = slides; });
-    };
-    AppComponent.prototype.onSelect = function (slide) {
-        this.selectedSlide = slide;
-    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n    <h1>{{title}}</h1>\n    <slide-detail [slide]=\"selectedSlide\"></slide-detail>\n    <h2>The Slides</h2>\n    <ul class=\"slides\">\n        <li *ngFor=\"let slide of slides\"\n        [class.selected]=\"slide == selectedSlide\"\n        (click)=\"onSelect(slide)\">\n            <span class=\"badge\">{{slide.id}}</span> {{slide.title}}\n        </li>\n    </ul>\n    ",
-            providers: [slide_service_1.SlideService]
+            template: "\n        <h1>{{title}}</h1>\n        <slides-main></slides-main>\n    "
         }), 
-        __metadata('design:paramtypes', [slide_service_1.SlideService])
+        __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;
 }());

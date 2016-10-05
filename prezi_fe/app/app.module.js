@@ -12,17 +12,27 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var app_component_1 = require('./app.component');
 var slide_detail_component_1 = require('./slide-detail.component');
+var slides_component_1 = require('./slides.component');
+var slide_service_1 = require('./slide.service');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule],
+            imports: [
+                platform_browser_1.BrowserModule
+            ],
             declarations: [
                 app_component_1.AppComponent,
-                slide_detail_component_1.SlideDetailComponent
+                slide_detail_component_1.SlideDetailComponent,
+                slides_component_1.SlidesComponent
             ],
-            bootstrap: [app_component_1.AppComponent]
+            providers: [
+                slide_service_1.SlideService
+            ],
+            bootstrap: [
+                app_component_1.AppComponent
+            ]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

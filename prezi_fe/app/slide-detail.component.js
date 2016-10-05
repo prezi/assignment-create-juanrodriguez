@@ -19,8 +19,10 @@ var SlideDetailComponent = (function () {
     ], SlideDetailComponent.prototype, "slide", void 0);
     SlideDetailComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'slide-detail',
-            template: "\n    <div *ngIf=\"slide\">\n        <h2>{{slide.title}} details!</h2>\n        <div><label>id: </label>{{slide.id}}</div>\n        <div><label>title: </label>{{slide.title}}</div>\n        <div><label>thumbnail: </label>{{slide.thumbnail}}</div>\n        <div><label>creator name: </label>{{slide.creator.name}}</div>\n        <div><label>creator profile: </label>{{slide.creator.profileUrl}}</div>\n        <div><label>created at: </label>{{slide.createdAt}}</div>\n    </div>\n    "
+            templateUrl: './templates/slide-detail.component.html',
+            styleUrls: ['./css/slide-detail.component.css']
         }), 
         __metadata('design:paramtypes', [])
     ], SlideDetailComponent);

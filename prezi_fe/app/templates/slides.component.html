@@ -1,0 +1,9 @@
+<slide-detail [slide]="selectedSlide"></slide-detail>
+<h2>The Slides</h2>
+<ul class="slides">
+    <li *ngFor="let slide of slides" 
+    [class.selected]="slide == selectedSlide" 
+    (click)="onSelect(slide)">
+        <span class="badge">{{slide.id}}</span> {{slide.title}}
+    </li>
+</ul>
