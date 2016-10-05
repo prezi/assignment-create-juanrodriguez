@@ -1,4 +1,10 @@
 "use strict";
+var Creator = (function () {
+    function Creator() {
+    }
+    return Creator;
+}());
+exports.Creator = Creator;
 var Slide = (function () {
     function Slide() {
     }

@@ -10,6 +10,8 @@ import { Slide } from './slide';
         <div><label>id: </label>{{slide.id}}</div>
         <div><label>title: </label>{{slide.title}}</div>
         <div><label>thumbnail: </label>{{slide.thumbnail}}</div>
+        <div><label>creator name: </label>{{slide.creator.name}}</div>
+        <div><label>creator profile: </label>{{slide.creator.profileUrl}}</div>
         <div><label>created at: </label>{{slide.createdAt}}</div>
     </div>
     `

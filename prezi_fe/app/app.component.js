@@ -9,44 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-// Test data
-var SLIDES = [
-    {
-        "id": "56f137f432fbb67217182785",
-        "title": "incididunt amet ad nostrud",
-        "thumbnail": "https://placeimg.com/400/400/any",
-        "createdAt": "March 6, 2014"
-    },
-    {
-        "id": "56f137f4d62116d1231786ca",
-        "title": "Lorem commodo excepteur minim",
-        "thumbnail": "https://placeimg.com/400/400/any",
-        "createdAt": "July 31, 2015"
-    },
-    {
-        "id": "56f137f46ba885ffacf4d3ff",
-        "title": "ut ipsum ut nostrud",
-        "thumbnail": "https://placeimg.com/400/400/any",
-        "createdAt": "July 5, 2015"
-    },
-    {
-        "id": "56f137f48510226968e8c9e7",
-        "title": "anim id enim duis",
-        "thumbnail": "https://placeimg.com/400/400/any",
-        "createdAt": "July 11, 2015"
-    },
-    {
-        "id": "56f137f40684a0672110741c",
-        "title": "consectetur dolor nisi amet",
-        "thumbnail": "https://placeimg.com/400/400/any",
-        "createdAt": "May 3, 2015"
-    }
-];
+var slide_service_1 = require('./slide.service');
 var AppComponent = (function () {
-    function AppComponent() {
-        this.title = 'Prezi Slides';
-        this.slides = SLIDES;
+    function AppComponent(slideService) {
+        this.slideService = slideService;
+        this.title = 'Prezi Slides Assignment';
     }
+    AppComponent.prototype.ngOnInit = function () {
+        this.getSlides();
+    };
+    AppComponent.prototype.getSlides = function () {
+        var _this = this;
+        this.slideService.getSlides().then(function (slides) { return _this.slides = slides; });
+    };
     AppComponent.prototype.onSelect = function (slide) {
         this.selectedSlide = slide;
     };
@@ -54,8 +29,9 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'my-app',
             template: "\n    <h1>{{title}}</h1>\n    <slide-detail [slide]=\"selectedSlide\"></slide-detail>\n    <h2>The Slides</h2>\n    <ul class=\"slides\">\n        <li *ngFor=\"let slide of slides\"\n        [class.selected]=\"slide == selectedSlide\"\n        (click)=\"onSelect(slide)\">\n            <span class=\"badge\">{{slide.id}}</span> {{slide.title}}\n        </li>\n    </ul>\n    ",
+            providers: [slide_service_1.SlideService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [slide_service_1.SlideService])
     ], AppComponent);
     return AppComponent;
 }());
