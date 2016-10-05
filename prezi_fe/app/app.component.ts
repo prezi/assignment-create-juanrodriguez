@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
+import { Slide } from './slide';
 
-export class Slide {
-    id: string;
-    title: string;
-    thumbnail: string;
-    createdAt: string;
-}
 
+// Test data
 const SLIDES: Slide[] = [
   {
     "id": "56f137f432fbb67217182785",
@@ -44,27 +40,24 @@ const SLIDES: Slide[] = [
   selector: 'my-app',
   template: `
     <h1>{{title}}</h1>
-    <h2>{{slide.title}} details!</h2>
-    <div><label>id: </label>{{slide.id}}</div>
-    <div><label>title: </label>{{slide.title}}</div>
-    <div><label>thumbnail: </label>{{slide.thumbnail}}</div>
-    <div><label>created at: </label>{{slide.createdAt}}</div>
+    <slide-detail [slide]="selectedSlide"></slide-detail>
     <h2>The Slides</h2>
     <ul class="slides">
-        <li *ngFor="let slide of slides">
+        <li *ngFor="let slide of slides"
+        [class.selected]="slide == selectedSlide"
+        (click)="onSelect(slide)">
             <span class="badge">{{slide.id}}</span> {{slide.title}}
         </li>
     </ul>
-    `
+    `,
 })
 
 export class AppComponent {
     title = 'Prezi Slides';
     slides = SLIDES;
-    slide: Slide = {
-        id: '1',
-        title: 'Test title',
-        thumbnail: 'test thumb',
-        createdAt: 'date'
-    };
+    selectedSlide: Slide;
+
+    onSelect(slide: Slide): void {
+        this.selectedSlide = slide;
+    }
 }

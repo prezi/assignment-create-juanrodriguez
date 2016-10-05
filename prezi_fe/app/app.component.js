@@ -9,12 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var Slide = (function () {
-    function Slide() {
-    }
-    return Slide;
-}());
-exports.Slide = Slide;
+// Test data
 var SLIDES = [
     {
         "id": "56f137f432fbb67217182785",
@@ -51,17 +46,14 @@ var AppComponent = (function () {
     function AppComponent() {
         this.title = 'Prezi Slides';
         this.slides = SLIDES;
-        this.slide = {
-            id: '1',
-            title: 'Test title',
-            thumbnail: 'test thumb',
-            createdAt: 'date'
-        };
     }
+    AppComponent.prototype.onSelect = function (slide) {
+        this.selectedSlide = slide;
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n    <h1>{{title}}</h1>\n    <h2>{{slide.title}} details!</h2>\n    <div><label>id: </label>{{slide.id}}</div>\n    <div><label>title: </label>{{slide.title}}</div>\n    <div><label>thumbnail: </label>{{slide.thumbnail}}</div>\n    <div><label>created at: </label>{{slide.createdAt}}</div>\n    <h2>The Slides</h2>\n    <ul class=\"slides\">\n        <li *ngFor=\"let slide of slides\">\n            <span class=\"badge\">{{slide.id}}</span> {{slide.title}}\n        </li>\n    </ul>\n    "
+            template: "\n    <h1>{{title}}</h1>\n    <slide-detail [slide]=\"selectedSlide\"></slide-detail>\n    <h2>The Slides</h2>\n    <ul class=\"slides\">\n        <li *ngFor=\"let slide of slides\"\n        [class.selected]=\"slide == selectedSlide\"\n        (click)=\"onSelect(slide)\">\n            <span class=\"badge\">{{slide.id}}</span> {{slide.title}}\n        </li>\n    </ul>\n    ",
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
