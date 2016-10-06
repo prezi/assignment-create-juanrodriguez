@@ -1,0 +1,5 @@
+<div class="slide-detail" *ngIf="slide">
+    <h2>{{slide.title}}</h2>
+    <div><img [src]="slide.thumbnail"/></div>
+    <div><label>By:</label><a href="{{slide.creator.profileUrl}}">{{slide.creator.name}}</a>, {{slide.createdAt}}</div>
+</div>

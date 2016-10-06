@@ -7,8 +7,8 @@ import { SlideService } from './slide.service';
 @Component({
     moduleId: module.id,
     selector: 'slides-main',
-    templateUrl: './templates/slides.component.html',
-    styleUrls: ['./css/slides.component.css'],
+    templateUrl: './assets/templates/slides.component.html',
+    styleUrls: ['./assets/css/slides.component.css'],
     providers: [SlideService]
 })
 

@@ -5,8 +5,8 @@ import { Slide } from './slide';
 @Component({
     moduleId: module.id,
     selector: 'slide-detail',
-    templateUrl: './templates/slide-detail.component.html',
-    styleUrls: ['./css/slide-detail.component.css']
+    templateUrl: './assets/templates/slide-detail.component.html',
+    styleUrls: ['./assets/css/slide-detail.component.css']
 })
 
 export class SlideDetailComponent {

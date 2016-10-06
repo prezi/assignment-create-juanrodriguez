@@ -17,7 +17,7 @@ export class SlideService {
     getSlides(): Promise<Slide[]> {
         return this.http.get(this.slidesServiceUrl)
                     .toPromise()
-                    .then(response => response.json().data as Hero[])
+                    .then(response => response.json().data as Slide[])
                     .catch(this.handleError);
     }
 

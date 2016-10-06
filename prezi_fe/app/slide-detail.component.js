@@ -21,8 +21,8 @@ var SlideDetailComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'slide-detail',
-            templateUrl: './templates/slide-detail.component.html',
-            styleUrls: ['./css/slide-detail.component.css']
+            templateUrl: './assets/templates/slide-detail.component.html',
+            styleUrls: ['./assets/css/slide-detail.component.css']
         }), 
         __metadata('design:paramtypes', [])
     ], SlideDetailComponent);

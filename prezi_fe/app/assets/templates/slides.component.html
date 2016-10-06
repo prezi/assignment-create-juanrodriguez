@@ -1,0 +1,11 @@
+<div class="slides-main">
+    <h2>Slides</h2>
+    <ul class="slides">
+        <li *ngFor="let slide of slides" 
+        [class.selected]="slide == selectedSlide" 
+        (click)="onSelect(slide)">
+            <span class="badge">{{slide.title}}</span> by {{slide.creator.name}}
+        </li>
+    </ul>
+</div>
+<slide-detail [slide]="selectedSlide"></slide-detail>
