@@ -21,6 +21,7 @@ export class SlidesComponent implements OnInit {
     selectedSlide: Slide;
     private queryTerm = new Subject<string>();
     private sortby = 0;
+    sortText = 'Dsc';
 
     constructor(private slideService: SlideService) {}
 
@@ -39,8 +40,10 @@ export class SlidesComponent implements OnInit {
     sort() {
         if (this.sortby == 0) {
             this.sortby = 1;
+            this.sortText = 'Asc';
         } else {
             this.sortby = 0;
+            this.sortText = 'Dsc';
         }
         this.slides = this.slideService.getSortedSlides(this.sortby);
     }

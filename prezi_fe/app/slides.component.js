@@ -17,6 +17,7 @@ var SlidesComponent = (function () {
         this.title = 'Prezi Slides Assignment';
         this.queryTerm = new Subject_1.Subject();
         this.sortby = 0;
+        this.sortText = 'Dsc';
     }
     SlidesComponent.prototype.ngOnInit = function () {
         this.slides = this.slideService.getSlides('');
@@ -30,9 +31,11 @@ var SlidesComponent = (function () {
     SlidesComponent.prototype.sort = function () {
         if (this.sortby == 0) {
             this.sortby = 1;
+            this.sortText = 'Asc';
         }
         else {
             this.sortby = 0;
+            this.sortText = 'Dsc';
         }
         this.slides = this.slideService.getSortedSlides(this.sortby);
     };

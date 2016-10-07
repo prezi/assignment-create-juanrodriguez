@@ -2,7 +2,7 @@
     <h2>Slides</h2>
     <input #searchBox id="search-box" />
     <button (click)="search(searchBox.value)">Search</button>
-    <button (click)="sort()">Sort</button>
+    <button (click)="sort()">{{sortText}}</button>
     <ul class="slides">
         <li *ngFor="let slide of slides | async" 
         [class.selected]="slide == selectedSlide" 
