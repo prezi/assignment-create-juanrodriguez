@@ -33,7 +33,6 @@ export class SlidesComponent implements OnInit {
     }
 
     search(term: string) {
-        debugger;
         this.slides = this.slideService.getSlides(term);
     }
 

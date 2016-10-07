@@ -25,7 +25,6 @@ var SlidesComponent = (function () {
         this.selectedSlide = slide;
     };
     SlidesComponent.prototype.search = function (term) {
-        debugger;
         this.slides = this.slideService.getSlides(term);
     };
     SlidesComponent.prototype.sort = function () {
