@@ -1,10 +1,15 @@
 <div class="slides-main">
     <h2>Slides</h2>
+    <input #searchBox id="search-box" />
+    <button (click)="search(searchBox.value)">Search</button>
+    <button (click)="sort()">Sort</button>
     <ul class="slides">
-        <li *ngFor="let slide of slides" 
+        <li *ngFor="let slide of slides | async" 
         [class.selected]="slide == selectedSlide" 
         (click)="onSelect(slide)">
-            <span class="badge">{{slide.title}}</span> by {{slide.creator.name}}
+            <span class="badge">{{slide.title}}</span> by 
+            {{slide.creator.name}}, 
+            <span class="created">{{slide.createdAt}}</span>
         </li>
     </ul>
 </div>

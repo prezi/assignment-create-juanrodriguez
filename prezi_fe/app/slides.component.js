@@ -9,21 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var Subject_1 = require('rxjs/Subject');
 var slide_service_1 = require('./slide.service');
 var SlidesComponent = (function () {
     function SlidesComponent(slideService) {
         this.slideService = slideService;
         this.title = 'Prezi Slides Assignment';
+        this.queryTerm = new Subject_1.Subject();
+        this.sortby = 0;
     }
     SlidesComponent.prototype.ngOnInit = function () {
-        this.getSlides();
-    };
-    SlidesComponent.prototype.getSlides = function () {
-        var _this = this;
-        this.slideService.getSlides().then(function (slides) { return _this.slides = slides; });
+        this.slides = this.slideService.getSlides('');
     };
     SlidesComponent.prototype.onSelect = function (slide) {
         this.selectedSlide = slide;
+    };
+    SlidesComponent.prototype.search = function (term) {
+        debugger;
+        this.slides = this.slideService.getSlides(term);
+    };
+    SlidesComponent.prototype.sort = function () {
+        if (this.sortby == 0) {
+            this.sortby = 1;
+        }
+        else {
+            this.sortby = 0;
+        }
+        this.slides = this.slideService.getSortedSlides(this.sortby);
     };
     SlidesComponent = __decorate([
         core_1.Component({

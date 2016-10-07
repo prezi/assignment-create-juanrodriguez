@@ -10,22 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-require('rxjs/add/operator/toPromise');
 var SlideService = (function () {
     function SlideService(http) {
         this.http = http;
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        this.slidesServiceUrl = 'http://localhost:5000/prezi/api/v1.0/slides';
+        this.slidesServiceUrl = 'http://localhost:5000/prezi/api/v1.0/slides/';
     }
-    SlideService.prototype.getSlides = function () {
-        return this.http.get(this.slidesServiceUrl)
-            .toPromise()
-            .then(function (response) { return response.json().data; })
-            .catch(this.handleError);
+    SlideService.prototype.getSlides = function (term) {
+        return this.http.get(this.slidesServiceUrl + term)
+            .map(function (r) { return r.json().data; });
     };
-    SlideService.prototype.handleError = function (error) {
-        console.error('An error occurred', error);
-        return Promise.reject(error.message || error);
+    SlideService.prototype.getSortedSlides = function (sortVal) {
+        return this.http.get(this.slidesServiceUrl + sortVal)
+            .map(function (r) { return r.json().data; });
     };
     SlideService = __decorate([
         core_1.Injectable(), 

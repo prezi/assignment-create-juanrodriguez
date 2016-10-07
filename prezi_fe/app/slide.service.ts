@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, Response } from '@angular/http';
 
-import 'rxjs/add/operator/toPromise';
+import { Observable } from 'rxjs';
 
 import { Slide } from './slide';
 
@@ -10,19 +10,17 @@ import { Slide } from './slide';
 export class SlideService {
 
     private headers = new Headers({'Content-Type': 'application/json'});
-    private slidesServiceUrl = 'http://localhost:5000/prezi/api/v1.0/slides';
+    private slidesServiceUrl = 'http://localhost:5000/prezi/api/v1.0/slides/';
 
     constructor(private http: Http) {}
 
-    getSlides(): Promise<Slide[]> {
-        return this.http.get(this.slidesServiceUrl)
-                    .toPromise()
-                    .then(response => response.json().data as Slide[])
-                    .catch(this.handleError);
+    getSlides(term: string): Observable<Slide[]> {
+      return this.http.get(this.slidesServiceUrl + term)
+        .map((r: Response) => r.json().data as Slide[]);
     }
 
-  private handleError(error: any): Promise<any> {
-      console.error('An error occurred', error);
-      return Promise.reject(error.message || error);
-  }
+    getSortedSlides(sortVal: number): Observable<Slide[]> {
+      return this.http.get(this.slidesServiceUrl + sortVal)
+              .map((r: Response) => r.json().data as Slide[]);
+    }
 }

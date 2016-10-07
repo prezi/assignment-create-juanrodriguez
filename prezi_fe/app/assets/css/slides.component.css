@@ -7,7 +7,7 @@
   margin: 0 0 2em 0;
   list-style-type: none;
   padding: 0;
-  width: 33em;
+  width: 38em;
 }
 
 .slides li {
@@ -53,7 +53,17 @@
   width: 15em;
 }
 
+.slides .created {
+  font-style: italic;
+}
+
 .slides-main {
   width: 50%;
   display: inline-block;
+}
+
+#search-box{
+  width: 450px;
+  height: 20px;
+  margin: .5em;
 }

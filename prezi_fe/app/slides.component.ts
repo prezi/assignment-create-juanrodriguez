@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+
 import { Slide } from './slide';
 import { SlideService } from './slide.service';
 
@@ -14,20 +17,32 @@ import { SlideService } from './slide.service';
 
 export class SlidesComponent implements OnInit {
     title = 'Prezi Slides Assignment';
-    slides: Slide[];
+    slides: Observable<Slide[]>;
     selectedSlide: Slide;
+    private queryTerm = new Subject<string>();
+    private sortby = 0;
 
     constructor(private slideService: SlideService) {}
 
     ngOnInit(): void {
-        this.getSlides();
-    }
-
-    getSlides(): void {
-        this.slideService.getSlides().then(slides => this.slides = slides);
+        this.slides = this.slideService.getSlides('');
     }
 
     onSelect(slide: Slide): void {
         this.selectedSlide = slide;
+    }
+
+    search(term: string) {
+        debugger;
+        this.slides = this.slideService.getSlides(term);
+    }
+
+    sort() {
+        if (this.sortby == 0) {
+            this.sortby = 1;
+        } else {
+            this.sortby = 0;
+        }
+        this.slides = this.slideService.getSortedSlides(this.sortby);
     }
 }

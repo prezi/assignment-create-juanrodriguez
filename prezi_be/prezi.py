@@ -8,7 +8,7 @@ app = Flask(__name__)
 db = MongoClient()[database['name']][database['collection']]
 
 
-@app.route(PATH + '/slides', methods=['GET'])
+@app.route(PATH + '/slides/', methods=['GET'])
 @crossdomain(origin='*')
 def get_slides():
     slides = []
@@ -23,7 +23,8 @@ def get_slides():
 @crossdomain(origin='*')
 def get_slide_by_title(slide_title):
     slides = []
-    for slide in db.find({'title': slide_title}):
+    query = db.find({'title': {'$regex': slide_title}})
+    for slide in query:
         slides.append(slide)
     if len(slides) == 0:
         abort(404)
