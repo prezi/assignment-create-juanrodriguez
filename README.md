@@ -17,7 +17,7 @@ Mongodb:
 ### Architecture:
 The project's structure consists of three components: frontend, backend and persistence as follow:
 * Frontend: Two components that controls the corresponding search and the detail of the slide -> slides.component.ts and slide-detail.component.ts; and a service that makes the comunication with the backend -> slide.service.ts.
-* Backend: A rest service built using Python and the flask microframework, consist of 3 end points -> getSlides, getSlide_by_title and get_slides_sorted_by_date, fot get all the slides, search a slide by title (complete title or words) and get the slides sorted by date; also. Also, i have created a logic file to encapsulate the json encoding of the response and the cross domain; and a settings folder to store importan configurations.
+* Backend: A rest service built using Python and the flask microframework, consist of 3 end points -> getSlides, getSlide_by_title and get_slides_sorted_by_date, to get all the slides, search a slide by title (complete title or words) and get the slides sorted by date. Also, I have created a logic file to encapsulate the json encoding of the response and the cross domain; and a settings folder to store important configurations.
 * Persistence: It is supported by a mongodb nosql database, the provided json file was loaded into the database to allow queries.
 
 ### Installation
@@ -62,10 +62,10 @@ $ npm start
 ```
 Now we can show the project in the browser.
 
-If I would have had more time:
+### If I would have had more time:
 * Study more about angular2 best practices and implement them in the project.
 * Fix the cache of the images, once the request is made, it doesn't matter that you change the detail of the slide, it continues showing the same image; the page needs a reload to change the image.
 * Implement an android app as a frontend
 * Deploy the project on a server to see it online.
 * Write unit tests
-* About the UI/UX design, I really really would like to say that with more time i would have implemented a better design, but that is not true, that is not really my strong.
+* About the UI/UX design, I really really would like to say that with more time I would have implemented a better design, but that is not true, that is not really my strong.
